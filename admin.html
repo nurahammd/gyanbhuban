@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>প্রকাশনা কক্ষ | জ্ঞানভুবন</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ background:#f3f5f1;
+ color:#26352e;
+ font-family:Arial,sans-serif;
+}
+header{
+ background:#173f32;
+ color:white;
+ padding:25px;
+ text-align:center;
+}
+main{
+ max-width:650px;
+ margin:25px auto;
+ padding:20px;
+}
+.panel{
+ background:white;
+ padding:22px;
+ border-radius:14px;
+ box-shadow:0 3px 15px #00000010;
+}
+h2{color:#234b3b}
+label{
+ display:block;
+ margin-top:17px;
+ margin-bottom:7px;
+ font-weight:bold;
+}
+input,textarea,select{
+ width:100%;
+ padding:13px;
+ border:1px solid #dce2dc;
+ border-radius:8px;
+ font-size:15px;
+ background:white;
+}
+textarea{min-height:100px}
+button{
+ width:100%;
+ padding:14px;
+ margin-top:22px;
+ background:#234b3b;
+ color:white;
+ border:0;
+ border-radius:8px;
+ font-size:16px;
+}
+#message{
+ margin-top:15px;
+ color:#234b3b;
+ text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>জ্ঞানভুবন</h1>
+<p>ব্যক্তিগত প্রকাশনা কক্ষ</p>
+</header>
+
+<main>
+<div class="panel">
+<h2>নতুন বই যোগ করুন</h2>
+
+<label>বইয়ের নাম</label>
+<input id="name" placeholder="বইয়ের নাম লিখুন">
+
+<label>লেখকের নাম</label>
+<input id="author" placeholder="লেখকের নাম লিখুন">
+
+<label>বইয়ের বিবরণ</label>
+<textarea id="description" placeholder="বই সম্পর্কে লিখুন"></textarea>
+
+<label>বইয়ের প্রচ্ছদের ছবি</label>
+<input id="cover" type="file" accept="image/*">
+
+<label>বইয়ের ধরন</label>
+<select id="type">
+<option value="free">বিনামূল্যে</option>
+<option value="paid">মূল্যযুক্ত</option>
+</select>
+
+<label>বইয়ের মূল্য (টাকা)</label>
+<input id="price" type="number" placeholder="যেমন: ২০০">
+
+<button onclick="saveBook()">বই সংরক্ষণ করুন</button>
+
+<div id="message"></div>
+</div>
+</main>
+
+<script>
+function saveBook(){
+ const name=document.getElementById("name").value.trim();
+ const author=document.getElementById("author").value.trim();
+ const description=document.getElementById("description").value.trim();
+ const type=document.getElementById("type").value;
+ const price=document.getElementById("price").value;
+
+ if(!name || !author){
+  document.getElementById("message").innerText=
+  "বইয়ের নাম ও লেখকের নাম লিখুন।";
+  return;
+ }
+
+ const books=JSON.parse(localStorage.getItem("gyanbhuban_books")||"[]");
+
+ books.push({
+  id:Date.now(),
+  name,author,description,type,price
+ });
+
+ localStorage.setItem("gyanbhuban_books",JSON.stringify(books));
+
+ document.getElementById("message").innerText=
+ "বইটি এই ব্রাউজারে সংরক্ষিত হয়েছে।";
+
+ document.getElementById("name").value="";
+ document.getElementById("author").value="";
+ document.getElementById("description").value="";
+ document.getElementById("price").value="";
+}
+</script>
+
+</body>
+</html>
