@@ -2,26 +2,26 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>বইয়ের সংগ্রহ | জ্ঞানভুবন</title>
 
 <style>
 *{box-sizing:border-box}
 body{
  margin:0;
- font-family:Arial,sans-serif;
  background:#f5f6f2;
  color:#26352e;
+ font-family:Arial,sans-serif;
 }
 header{
  background:#234b3b;
  color:white;
- padding:28px 20px;
  text-align:center;
+ padding:30px 15px;
 }
 header h1{margin:0;font-size:28px}
-header p{color:#dce8df}
-main{padding:22px;max-width:850px;margin:auto}
+header p{margin-bottom:0;color:#dce8df}
+main{max-width:900px;margin:auto;padding:22px}
 h2{font-size:22px}
 .search{
  width:100%;
@@ -29,18 +29,40 @@ h2{font-size:22px}
  border:1px solid #ddd;
  border-radius:10px;
  font-size:16px;
- margin-bottom:20px;
+ margin:10px 0 22px;
 }
 .book{
+ display:flex;
+ gap:16px;
  background:white;
- padding:18px;
+ padding:14px;
  border-radius:12px;
- margin-bottom:14px;
+ margin-bottom:16px;
  border:1px solid #e5e9e5;
 }
-.book h3{margin:0 0 8px;color:#234b3b}
-.book p{color:#68756d;line-height:1.6}
-.status{font-size:13px;color:#52735f}
+.cover{
+ width:110px;
+ height:150px;
+ background:#e6ebe5;
+ border-radius:7px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ text-align:center;
+ color:#52735f;
+ flex-shrink:0;
+}
+.details h3{margin:5px 0;color:#234b3b}
+.details p{color:#68756d;line-height:1.5}
+.price{font-weight:bold;color:#234b3b}
+button{
+ background:#234b3b;
+ color:white;
+ border:0;
+ padding:10px 18px;
+ border-radius:7px;
+ font-size:14px;
+}
 footer{text-align:center;padding:25px;color:#849087}
 </style>
 </head>
@@ -62,9 +84,17 @@ oninput="searchBooks()">
 <div id="bookList">
 
 <div class="book">
+<div class="cover">বইয়ের প্রচ্ছদ</div>
+<div class="details">
 <h3>স্বাগতম জ্ঞানভুবনে</h3>
-<p>এটি আমাদের অনলাইন লাইব্রেরির প্রথম পৃষ্ঠা। এখানে ধীরে ধীরে নতুন বই যুক্ত করা হবে।</p>
-<div class="status">বিনামূল্যে</div>
+<p>লেখক: জ্ঞানভুবন প্রকাশনা</p>
+<p>আমাদের ডিজিটাল লাইব্রেরির পরিচিতিমূলক বই।</p>
+<div class="price">বিনামূল্যে</div>
+<br>
+<button onclick="alert('বইটি শীঘ্রই পড়ার জন্য প্রস্তুত হবে।')">
+বই পড়ুন
+</button>
+</div>
 </div>
 
 </div>
@@ -78,10 +108,10 @@ oninput="searchBooks()">
 function searchBooks(){
  const value=document.getElementById("search").value.toLowerCase();
  document.querySelectorAll(".book").forEach(book=>{
-  book.style.display=book.innerText.toLowerCase().includes(value)?"block":"none";
+  book.style.display=book.innerText.toLowerCase().includes(value)?"flex":"none";
  });
 }
 </script>
 
 </body>
-  </html>
+</html>
