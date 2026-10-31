@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>বইয়ের সংগ্রহ | জ্ঞানভুবন</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#f5f6f2;
+ color:#26352e;
+}
+header{
+ background:#234b3b;
+ color:white;
+ padding:28px 20px;
+ text-align:center;
+}
+header h1{margin:0;font-size:28px}
+header p{color:#dce8df}
+main{padding:22px;max-width:850px;margin:auto}
+h2{font-size:22px}
+.search{
+ width:100%;
+ padding:14px;
+ border:1px solid #ddd;
+ border-radius:10px;
+ font-size:16px;
+ margin-bottom:20px;
+}
+.book{
+ background:white;
+ padding:18px;
+ border-radius:12px;
+ margin-bottom:14px;
+ border:1px solid #e5e9e5;
+}
+.book h3{margin:0 0 8px;color:#234b3b}
+.book p{color:#68756d;line-height:1.6}
+.status{font-size:13px;color:#52735f}
+footer{text-align:center;padding:25px;color:#849087}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>জ্ঞানভুবন</h1>
+<p>জ্ঞান ও পাঠের এক নতুন জগৎ</p>
+</header>
+
+<main>
+<h2>আমাদের বইয়ের সংগ্রহ</h2>
+
+<input class="search" id="search"
+placeholder="বইয়ের নাম লিখে খুঁজুন..."
+oninput="searchBooks()">
+
+<div id="bookList">
+
+<div class="book">
+<h3>স্বাগতম জ্ঞানভুবনে</h3>
+<p>এটি আমাদের অনলাইন লাইব্রেরির প্রথম পৃষ্ঠা। এখানে ধীরে ধীরে নতুন বই যুক্ত করা হবে।</p>
+<div class="status">বিনামূল্যে</div>
+</div>
+
+</div>
+</main>
+
+<footer>
+জ্ঞানভুবন · একটি স্বাধীন ডিজিটাল লাইব্রেরি
+</footer>
+
+<script>
+function searchBooks(){
+ const value=document.getElementById("search").value.toLowerCase();
+ document.querySelectorAll(".book").forEach(book=>{
+  book.style.display=book.innerText.toLowerCase().includes(value)?"block":"none";
+ });
+}
+</script>
+
+</body>
+  </html>
